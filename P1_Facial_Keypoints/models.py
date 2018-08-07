@@ -11,7 +11,7 @@ import torch.nn.init as I
 
 class Net(nn.Module):
 
-    def __init__(self):
+    def __init__(self, fileName=None):
         super(Net, self).__init__()
         
         ## TODO: Define all the layers of this CNN, the only requirements are:
@@ -43,8 +43,12 @@ class Net(nn.Module):
         self.fc1 = nn.Linear(5*5*256, 1000)
         self.fc2 = nn.Linear(1000, 1000)
         self.out = nn.Linear(1000, 136)
-        
-    
+        if fileName != None:
+            if torch.cuda.device_count() == 0:
+                self.load_state_dict(torch.load(fileName, map_location='cpu'))
+            else:
+                self.load_state_dict(torch.load(fileName))
+                
         
     def forward(self, x):
         ## TODO: Define the feedforward behavior of this model
