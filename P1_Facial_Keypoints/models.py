@@ -1,4 +1,5 @@
 ## TODO: define the convolutional neural network architecture
+# make the input smaller
 
 import torch
 from torch.autograd import Variable
@@ -20,7 +21,7 @@ class Net(nn.Module):
         
         # As an example, you've been given a convolutional layer, which you may (but don't have to) change:
         # 1 input image channel (grayscale), 32 output channels/feature maps, 5x5 square convolution kernel
-        # input size 1* 224* 224 
+        # input size 1* 100* 100
         
         self.conv1 = nn.Conv2d(1, 32, 4) 
         self.conv2 = nn.Conv2d(32, 64, 3)
@@ -36,11 +37,11 @@ class Net(nn.Module):
         self.drop5 = nn.Dropout2d(p=0.5)
         self.drop6 = nn.Dropout2d(p=0.6)
         
-        # (224 - 3) = 221 / 2 = 110 - 2 = 108 / 2 = 54 -1 = 53 /2 = 26/2 = 13
+        # (100 - 3) = 97 / 2 = 48 - 2 = 46 / 2 = 23 -1 = 22 /2 = 11/2 = 5
         ## Note that among the layers to add, consider including:
         # maxpooling layers, multiple conv layers, fully-connected layers, and other layers (such as dropout or batch normalization) to avoid overfitting
-        self.fc1 = nn.Linear(13*13*256, 5000)
-        self.fc2 = nn.Linear(5000, 1000)
+        self.fc1 = nn.Linear(5*5*256, 1000)
+        self.fc2 = nn.Linear(1000, 1000)
         self.out = nn.Linear(1000, 136)
         
     
