@@ -103,3 +103,4 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+yolov3.weights
