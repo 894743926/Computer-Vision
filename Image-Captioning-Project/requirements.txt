@@ -12,4 +12,7 @@ scikit-image>=0.13.1
 seaborn>=0.8.1
 torch>=0.4.0
 torchvision>=0.2.0
+numpy
+scipy
+Cython
 pycocotools
