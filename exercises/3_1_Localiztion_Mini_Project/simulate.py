@@ -2,6 +2,7 @@ import localizer
 import random
 from copy import deepcopy
 from matplotlib import pyplot as plt
+import pdb
 
 class Simulation(object):
 	def __init__(self, grid, blur, p_hit,start_pos=None):
