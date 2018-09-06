@@ -25,7 +25,6 @@ class robot:
     #
     def __init__(self, world_size = 100.0, measurement_range = 30.0,
                  motion_noise = 1.0, measurement_noise = 1.0):
-        self.measurement_noise = 0.0
         self.world_size = world_size
         self.measurement_range = measurement_range
         self.x = world_size / 2.0
@@ -89,6 +88,13 @@ class robot:
         ## 3. If either of the distances, dx or dy, fall outside of the internal var, measurement_range
         ##    then we cannot record them; if they do fall in the range, then add them to the measurements list
         ##    as list.append([index, dx, dy]), this format is important for data creation done later
+        for index,landmark in enumerate(self.landmarks):
+            dx = landmark[0] - self.x + self.rand()*self.motion_noise
+            dy = landmark[1] - self.y + self.rand()*self.motion_noise
+            if sqrt(dx**2+dy**2) > self.measurement_range:
+                continue
+            measurements.append([index, dx, dy])
+        
         
         ## TODO: return the final, complete list of measurements
         return measurements
