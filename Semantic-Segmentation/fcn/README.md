@@ -32,3 +32,4 @@ and then run it
 sh run_model.sh
 ```
 
+中文介绍:[如何深度学习进行语义分割](https://aprilyoungs.github.io/blog/2018/12/06/FCN-concept)
