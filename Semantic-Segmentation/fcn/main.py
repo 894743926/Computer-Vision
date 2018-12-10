@@ -172,9 +172,6 @@ def run():
     # Download pretrained vgg model
     helper.maybe_download_pretrained_vgg(data_dir)
 
-    # OPTIONAL: Train and Inference on the cityscapes dataset instead of the Kitti dataset.
-    # You'll need a GPU with at least 10 teraFLOPS to train on.
-    #  https://www.cityscapes-dataset.com/
 
     with tf.Session() as sess:
         # Path to vgg model
@@ -182,10 +179,7 @@ def run():
         # Create function to get batches
         get_batches_fn = helper.gen_batch_function(os.path.join(data_dir, 'data_road/training'), image_shape)
 
-        # OPTIONAL: Augment Images for better results
-        #  https://datascience.stackexchange.com/questions/5224/how-to-prepare-augment-images-for-neural-network
 
-        # TODO: Build NN using load_vgg, layers, and optimize function
         input_image, keep_prob, layer3, layer4, layer7 = load_vgg(sess, vgg_path)
         model_output = layers(layer3, layer4, layer7, num_classes)
         logits, train_op, cross_entropy_loss = optimize(model_output, correct_label, learning_rate, num_classes)
